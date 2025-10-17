@@ -9,13 +9,44 @@
   <style>
 @keyframes scroll {0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .marquee {animation: scroll 20s linear infinite;}
-.typewriter {display:inline-block;white-space:nowrap;animation:typing 3s steps(40) 1, blink .8s step-end infinite}
-@keyframes typing{from{width:0}to{width:100%}}@keyframes blink{50%{border-color:transparent}}
-@media (max-width: 640px) {
   .typewriter {
-    white-space: normal;
+    display: inline-block;
+    white-space: normal;            /* allow wrapping on small screens */
+    max-width: 100%;
+    line-height: 1.05;
+    vertical-align: middle;
   }
-}
+
+  /* blinking cursor as a separate element (pseudo or span) */
+  .typewriter::after {
+    content: "";
+    display: inline-block;
+    width: .12em;                  /* cursor thickness */
+    height: 1em;
+    margin-left: .12em;
+    vertical-align: text-bottom;
+    background: currentColor;
+    animation: blink 1s steps(1) infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0 }
+  }
+
+  /* responsive tweaks for small screens */
+  @media (max-width: 640px) {
+    .typewriter {
+      font-size: 1.6rem;           /* adjust to taste */
+      text-align: center;
+    }
+  }
+
+  /* accessibility: stop animation for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .typewriter::after { animation: none; opacity: 1; }
+  }
+@keyframes typing{from{width:0}to{width:100%}}@keyframes blink{50%{border-color:transparent}}
+
   </style>
 </head>
 <body class="bg-gradient-to-b from-purple-200 to-purple-50 text-gray-800 font-sans">
@@ -41,7 +72,9 @@
     </div>
   </header>  <!-- HERO SECTION -->  <section id="home" class="bg-gradient-to-r from-purple-300 via-purple-400 to-purple-700 text-white text-center py-16 px-6">
     <div class="max-w-3xl mx-auto">
-      <h1 class="typewriter text-4xl md:text-5xl font-extrabold leading-tight">Welcome to SportsZone ⚽</h1>
+    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-center">
+  <span id="typewriter" class="typewriter inline-block"></span>
+</h1>
       <p class="mt-4 text-lg md:text-xl opacity-90">Discover upcoming football matches, league updates, and stay connected to the pulse of the game — all in one place.</p>
       <div class="mt-6 flex justify-center gap-4">
         <a href="#matches" class="bg-white text-purple-700 font-semibold px-6 py-2 rounded-full hover:bg-purple-100 transition">View Matches</a>
@@ -95,5 +128,53 @@
     document.getElementById('menuBtn').addEventListener('click',()=>{
       document.getElementById('mobileMenu').classList.toggle('hidden');
     });
+
+     (function() {
+    const el = document.getElementById('typewriter');
+    if (!el) return;
+
+    // Texts to type (you can put multiple messages if you like)
+    const texts = ['Welcome to SportsZone ⚽'];
+    const typeSpeed = 60;     // ms per character
+    const pauseAfter = 800;   // ms after a line completes
+    const deleteSpeed = 40;   // if you want deleting (not used here)
+    const loop = false;       // loop messages?
+
+    // Respect prefers-reduced-motion
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+      el.textContent = texts[0]; // don't animate
+      return;
+    }
+
+    let textIndex = 0;
+    let charIndex = 0;
+
+    async function sleep(ms) {
+      return new Promise(res => setTimeout(res, ms));
+    }
+
+    async function typeText(text) {
+      el.textContent = ''; // start fresh
+      for (charIndex = 0; charIndex < text.length; charIndex++) {
+        el.textContent += text[charIndex];
+        // small randomization for a more natural feel
+        const jitter = Math.random() * (typeSpeed * 0.4) - (typeSpeed * 0.2);
+        await sleep(Math.max(10, typeSpeed + jitter));
+      }
+    }
+
+    async function run() {
+      do {
+        const current = texts[textIndex];
+        await typeText(current);
+        await sleep(pauseAfter);
+        textIndex = (textIndex + 1) % texts.length;
+      } while (loop);
+    }
+
+    // start typing
+    run();
+  })();
   </script></body>
 </html>
