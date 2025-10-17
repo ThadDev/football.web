@@ -1,0 +1,99 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SportsZone — Discover Football Matches</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+@keyframes scroll {0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee {animation: scroll 20s linear infinite;}
+.typewriter {display:inline-block;white-space:nowrap;animation:typing 3s steps(40) 1, blink .8s step-end infinite}
+@keyframes typing{from{width:0}to{width:100%}}@keyframes blink{50%{border-color:transparent}}
+@media (max-width: 640px) {
+  .typewriter {
+    white-space: normal;
+  }
+}
+  </style>
+</head>
+<body class="bg-gradient-to-b from-purple-200 to-purple-50 text-gray-800 font-sans">
+  <!-- HEADER -->
+  <header class="bg-gradient-to-r from-purple-400 to-purple-700 text-white sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto flex items-center justify-between p-4">
+      <div class="text-xl font-bold tracking-tight">SportsZone</div>
+      <nav class="hidden md:flex gap-6 font-medium">
+        <a href="#home" class="hover:text-purple-200">Home</a>
+        <a href="#leagues" class="hover:text-purple-200">Leagues</a>
+        <a href="#matches" class="hover:text-purple-200">Matches</a>
+        <a href="#contact" class="hover:text-purple-200">Contact</a>
+      </nav>
+      <button id="menuBtn" class="md:hidden focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden flex-col bg-purple-600 text-white space-y-3 px-4 pb-4">
+      <a href="#home">Home</a>
+      <a href="#leagues">Leagues</a>
+      <a href="#matches">Matches</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>  <!-- HERO SECTION -->  <section id="home" class="bg-gradient-to-r from-purple-300 via-purple-400 to-purple-700 text-white text-center py-16 px-6">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="typewriter text-4xl md:text-5xl font-extrabold leading-tight">Welcome to SportsZone ⚽</h1>
+      <p class="mt-4 text-lg md:text-xl opacity-90">Discover upcoming football matches, league updates, and stay connected to the pulse of the game — all in one place.</p>
+      <div class="mt-6 flex justify-center gap-4">
+        <a href="#matches" class="bg-white text-purple-700 font-semibold px-6 py-2 rounded-full hover:bg-purple-100 transition">View Matches</a>
+        <a href="#leagues" class="border border-white font-semibold px-6 py-2 rounded-full hover:bg-white hover:text-purple-700 transition">Explore Leagues</a>
+      </div>
+    </div>
+    <div class="mt-10 overflow-hidden">
+      <div id="leagues" class="marquee flex gap-4">
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 whitespace-nowrap">Premier League</div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 whitespace-nowrap">La Liga</div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 whitespace-nowrap">Serie A</div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 whitespace-nowrap">Bundesliga</div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 whitespace-nowrap">Ligue 1</div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 whitespace-nowrap">Champions League</div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 whitespace-nowrap">Europa League</div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 whitespace-nowrap">Copa Libertadores</div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 whitespace-nowrap">MLS</div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 whitespace-nowrap">CAF Champions League</div>
+      </div>
+    </div>
+  </section>  <!-- TOMORROW MATCHES -->  <section id="matches" class="max-w-6xl mx-auto py-12 px-4">
+    <h2 class="text-2xl font-bold text-purple-700 mb-6">Tomorrow's Matches (Saturday, 18 October 2025)</h2>
+    <div class="space-y-8"><div class="bg-white shadow rounded-xl p-5">
+    <h3 class="text-lg font-semibold text-purple-600">Premier League</h3>
+    <ul class="divide-y divide-gray-100 mt-3">
+      <li class="py-2 flex justify-between"><span>Nottm Forest vs Chelsea</span><span class="text-gray-500 text-sm">12:30 BST</span></li>
+      <li class="py-2 flex justify-between"><span>Brighton vs Newcastle</span><span class="text-gray-500 text-sm">15:00 BST</span></li>
+      <li class="py-2 flex justify-between"><span>Fulham vs Arsenal</span><span class="text-gray-500 text-sm">17:30 BST</span></li>
+    </ul>
+  </div>
+
+  <div class="bg-white shadow rounded-xl p-5">
+    <h3 class="text-lg font-semibold text-purple-600">Serie A</h3>
+    <ul class="divide-y divide-gray-100 mt-3">
+      <li class="py-2 flex justify-between"><span>Roma vs Inter Milan</span><span class="text-gray-500 text-sm">19:45 CEST</span></li>
+      <li class="py-2 flex justify-between"><span>Torino vs Napoli</span><span class="text-gray-500 text-sm">17:00 CEST</span></li>
+    </ul>
+  </div>
+
+  <div class="bg-white shadow rounded-xl p-5">
+    <h3 class="text-lg font-semibold text-purple-600">Bundesliga</h3>
+    <ul class="divide-y divide-gray-100 mt-3">
+      <li class="py-2 flex justify-between"><span>Heidenheim vs Borussia Dortmund</span><span class="text-gray-500 text-sm">12:30 CEST</span></li>
+      <li class="py-2 flex justify-between"><span>Union Berlin vs Mönchengladbach</span><span class="text-gray-500 text-sm">14:30 CEST</span></li>
+    </ul>
+  </div>
+
+</div>
+
+  </section>  <footer class="text-center py-6 text-sm text-gray-500 bg-purple-50">© 2025 SportsZone. All Rights Reserved.</footer>  <script>
+    document.getElementById('menuBtn').addEventListener('click',()=>{
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+  </script></body>
+</html>
